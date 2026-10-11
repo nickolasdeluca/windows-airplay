@@ -14,7 +14,7 @@ Date: 2026-10-11. Sender details supplied by the user. AirPlay session not yet t
 | Bonjour service | PASS | Signed Apple Bonjour64.msi installed; service running |
 | Native listener startup | PASS | Actual probe reached Listening after DNS-SD registration; repeated with a fresh plugin cache |
 | Receiver process cleanup | PASS | No uxplay process remained after terminating the probe |
-| Firewall setup | PREVIEW ONLY | Private-profile, LocalSubnet, per-executable rules generated with -WhatIf; no rules applied |
+| Firewall setup | PASS | Three enabled per-executable rules verified: Private profile, LocalSubnet, receiver TCP/UDP 35000–35002 and Bonjour UDP 5353 |
 | Mac discovery and authentication | NOT RUN | Requires network setup and the Mac |
 | Extended desktop / independent Mac window | NOT RUN | Required before GUI work |
 | Reconnect / three cycles | NOT RUN | Requires a real session |
@@ -24,4 +24,4 @@ Date: 2026-10-11. Sender details supplied by the user. AirPlay session not yet t
 
 Next: start the probe on monitor 1 after network setup, connect the M1 Mac, choose Extended Display, and move a window onto the left monitor. Record the actual outcome, including failed authentication and reconnect, before proceeding to the WPF app.
 
-Host Ethernet 2 remains Public; permission to change this trusted-network setting is pending. Project firewall rules have not been applied. Initial native launch timed out at 10 seconds; subsequent normal and fresh-cache starts passed. Startup allowance is now 60 seconds, with cancellation supported. The cause of the initial delay is not confirmed.
+Host Ethernet 2 changed to Private with explicit user authorization for this trusted home network. Project firewall rules were applied and read back. Bonjour service executable is C:/Program Files (x86)/Bonjour/mDNSResponder.exe. The probe is listening; Mac connection test is pending. Initial native launch timed out at 10 seconds; subsequent normal and fresh-cache starts passed. Startup allowance is now 60 seconds, with cancellation supported. The cause of the initial delay is not confirmed.

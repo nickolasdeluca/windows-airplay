@@ -27,7 +27,7 @@ Run commands from this repository in PowerShell. RTK is required by this workspa
 4. If required, open an **administrator PowerShell** and add the scoped firewall rules. Substitute the actual Bonjour executable location if it differs:
 
    ~~~powershell
-   rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Configure-Firewall.ps1 -ReceiverPath "$PWD/artifacts/receiver/uxplay.exe" -BonjourPath 'C:/Program Files/Bonjour/mDNSResponder.exe'
+   rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Configure-Firewall.ps1 -ReceiverPath "$PWD/artifacts/receiver/uxplay.exe" -BonjourPath 'C:/Program Files (x86)/Bonjour/mDNSResponder.exe'
    ~~~
 
    Rules allow only the named executables, Private network profile and LocalSubnet. Use -WhatIf to preview. Use the same command with -Remove to remove only these project-owned rules. The script does not change your network profile.
