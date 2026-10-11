@@ -11,6 +11,7 @@ internal static class Program
         Console.CancelKeyPress+=(_,e)=>{e.Cancel=true;cancellation.Cancel();};
         try
         {
+            if(args.Length==2 && args[0]=="--validate-runtime") { WindowsAirplay.Core.Packaging.RuntimeLayout.Validate(args[1]); Console.WriteLine("PASS: runtime layout and native x64 architecture."); return 0; }
             using var monitors=new MonitorCatalog();
             var screens=monitors.GetMonitors();
             if(args.Length==0 || args.Contains("--list-monitors"))

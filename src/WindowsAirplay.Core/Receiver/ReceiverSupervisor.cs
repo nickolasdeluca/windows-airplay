@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 namespace WindowsAirplay.Core.Receiver;
-public sealed class ReceiverSupervisor(string sessionDirectory) : IAsyncDisposable
+public sealed class ReceiverSupervisor(string sessionDirectory) : IAsyncDisposable,IReceiverSession
 {
     private readonly SemaphoreSlim gate = new(1,1);
     private readonly object stateLock = new();

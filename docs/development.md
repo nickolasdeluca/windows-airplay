@@ -19,3 +19,7 @@ patches/uxplay-windows-manifest.patch embeds the native UTF-8 code-page and PerM
 Native readiness has a 60-second deadline to allow initial native setup; it remains cancellable. An initial 10-second timeout was observed; later starts including a fresh plugin registry passed. The initial delay has not been conclusively attributed to plugin scanning.
 
 Review status: an independent reviewer identified the native Unicode and buffered-output state issues; both were reproduced and fixed with regression coverage. The reviewer reached its usage limit before a final verdict. Parent-crash/descendant fixture coverage, mixed-DPI and monitor-unplug hardware checks, and the real Mac session remain outstanding; this checkpoint is not a completed release review.
+
+Controller architecture: the WPF shell owns the dispatcher, timer, tray, and Windows adapters. MainViewModel lives in Core/App behind IReceiverSession and IDisplayHost so state transitions and monitor-loss behavior can be tested without a WPF dispatcher or physical monitor. Settings writes use a temporary file followed by replacement; malformed JSON recovers with defaults and a diagnostic.
+
+Updated verification: 44 Release tests pass, now including abrupt supervisor-owner termination and descendant process cleanup. The self-contained WPF app opened and responded. Computer-use native pipe remained unavailable after retry/reset, so visual inspection and connected tray/control interaction are not recorded as passed. The previously incomplete independent review has not been replaced by a completed review.

@@ -68,6 +68,27 @@ public sealed class SupervisorTests : IAsyncLifetime
         await Task.Delay(150);
         Assert.Equal(ReceiverState.Faulted,receiver.State);
     }
+    [Fact] public async Task StopAlsoKillsDescendantProcesses()
+    {
+        await receiver.StartAsync(new("descendant",directory));
+        var pid=int.Parse(await File.ReadAllTextAsync(Path.Combine(directory,"session","descendant.pid")));
+        using var descendant=Process.GetProcessById(pid);
+        try { await receiver.StopAsync(); await descendant.WaitForExitAsync().WaitAsync(TimeSpan.FromSeconds(5)); Assert.True(descendant.HasExited); }
+        finally { if(!descendant.HasExited)descendant.Kill(true); }
+    }
+    [Fact] public async Task AbruptOwnerExitKillsTheReceiver()
+    {
+        var start=new ProcessStartInfo(Path.Combine(directory,"WindowsAirplay.TestReceiver.exe")) { UseShellExecute=false,CreateNoWindow=true,RedirectStandardOutput=true };
+        start.ArgumentList.Add("--supervise"); start.ArgumentList.Add(directory); start.ArgumentList.Add(Path.Combine(directory,"owner-session"));
+        using var owner=Process.Start(start)!;
+        Process? child=null;
+        try {
+            var line=await owner.StandardOutput.ReadLineAsync().WaitAsync(TimeSpan.FromSeconds(10));
+            child=Process.GetProcessById(int.Parse(line!));
+            owner.Kill(); await owner.WaitForExitAsync();
+            await child.WaitForExitAsync().WaitAsync(TimeSpan.FromSeconds(5)); Assert.True(child.HasExited);
+        } finally { if(!owner.HasExited) {owner.Kill(true);await owner.WaitForExitAsync();} if(child is not null) {if(!child.HasExited)child.Kill(true);child.Dispose();} }
+    }
     public async Task DisposeAsync()
     {
         await receiver.DisposeAsync();

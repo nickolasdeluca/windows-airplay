@@ -2,7 +2,28 @@
 
 Use a Windows-connected monitor as an extended display for an Apple Silicon Mac over the LAN.
 
-**Status: compatibility probe, not yet a finished desktop app.** Built locally for Windows x64. The first acceptance device is an M1 MacBook Pro running macOS 27.0.1. AirPlay interoperability with that device has not yet been tested. The native D3D11 video placement test passed on the host's left 1920×1080 monitor.
+**Status: working extended-display receiver with a local WPF app preview.** The user confirmed independent extended desktop on an M1 MacBook Pro running macOS 27.0.1. Native D3D11 placement passed on the host's left 1920×1080 monitor. The new controller builds and opens; connected UI and tray acceptance remain pending.
+
+## Windows app
+
+Build and open the controller:
+
+~~~powershell
+rtk proxy .tools/dotnet/dotnet.exe build src/WindowsAirplay.App/WindowsAirplay.App.csproj -c Release
+rtk proxy src/WindowsAirplay.App/bin/Release/net10.0-windows/WindowsAirplay.App.exe
+~~~
+
+Select a monitor, choose Start receiving, and enter the password displayed in the app on your Mac. The controller saves the receiver name and stable monitor identity. Closing it while receiving keeps the tray available; tray Stop and Exit end the session. A missing saved monitor requires reselection.
+
+Stop the compatibility probe before starting the app: they use the same ports. Development builds reuse artifacts/receiver, so existing host firewall rules apply. A packaged preview has its own receiver path and requires rules for that path; see [local preview instructions](docs/local-preview.md).
+
+Create a self-contained local preview and ZIP with:
+
+~~~powershell
+rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Publish.ps1
+~~~
+
+The script uses a new output folder each time, validates native architecture and plugin loading, and includes native license texts and source provenance. External distribution is pending complete dependency compliance and a project license decision.
 
 ## Try the probe
 
@@ -57,4 +78,4 @@ rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Test-Recei
 
 See [development notes](docs/development.md), [compatibility results](docs/compatibility/m1-macos-27.0.1.md), and the [implementation plan](docs/superpowers/plans/2026-10-11-windows-airplay.md).
 
-The WPF controller, saved settings, tray menu and distributable packaging follow the real Mac compatibility gate. This repository currently provides a local build; it is not an externally published release.
+The WPF controller, saved settings, tray menu and self-contained local packaging are implemented. Automated settings, controller, process ownership, display policy and packaging checks pass. UI automation was unavailable on this host; manual connected-controller, tray, monitor-unplug, mixed-DPI, repeated reconnect and clean-machine checks remain outstanding. Nothing is externally published.

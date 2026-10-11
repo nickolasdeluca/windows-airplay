@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsAirplay.Tests", "tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsAirplay.TestReceiver", "tests\WindowsAirplay.TestReceiver\WindowsAirplay.TestReceiver.csproj", "{D2CD9614-904B-4A6A-B6A9-C8C536D3D361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsAirplay.App", "src\WindowsAirplay.App\WindowsAirplay.App.csproj", "{DC94E67D-2ED7-4F2F-90C7-55588F395870}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{D2CD9614-904B-4A6A-B6A9-C8C536D3D361}.Release|x64.Build.0 = Release|Any CPU
 		{D2CD9614-904B-4A6A-B6A9-C8C536D3D361}.Release|x86.ActiveCfg = Release|Any CPU
 		{D2CD9614-904B-4A6A-B6A9-C8C536D3D361}.Release|x86.Build.0 = Release|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Debug|x64.Build.0 = Debug|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Release|x64.ActiveCfg = Release|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Release|x64.Build.0 = Release|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +111,6 @@ Global
 		{BA974FFD-A112-4A08-A2F3-DB178BEB83D2} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{43F13172-AC0A-484F-9602-D17C2FD47127} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{D2CD9614-904B-4A6A-B6A9-C8C536D3D361} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{DC94E67D-2ED7-4F2F-90C7-55588F395870} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
