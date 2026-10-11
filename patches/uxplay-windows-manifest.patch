@@ -1,0 +1,9 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -62,2 +62,6 @@
+ add_executable( uxplay uxplay.cpp )
++if(WIN32)
++  enable_language(RC)
++  target_sources(uxplay PRIVATE windows-airplay.rc)
++endif()
+ target_link_libraries( uxplay renderers airplay )

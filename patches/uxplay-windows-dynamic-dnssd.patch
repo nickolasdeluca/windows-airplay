@@ -1,0 +1,11 @@
+--- a/lib/CMakeLists.txt
++++ b/lib/CMakeLists.txt
+@@ -157,7 +157,7 @@
+       endif()
+       message( STATUS "BONJOUR_SDK_HOME " ${BONJOUR_SDK} )
+       set(DNSSD "${BONJOUR_SDK}/Lib/x64/dnssd.lib")
+-      target_link_libraries(airplay ${DNSSD} )
++      # Windows resolves DNS-SD through LoadLibrary/GetProcAddress in dnssd.c.
+       message( STATUS "dns_sd: using " ${DNSSD} )
+       find_path(DNSSD_INCLUDE_DIR dns_sd.h HINTS ${BONJOUR_SDK}/Include )
+     else()

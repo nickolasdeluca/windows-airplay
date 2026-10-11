@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><UseWindowsForms>true</UseWindowsForms><ImplicitUsings>disable</ImplicitUsings></PropertyGroup><ItemGroup><ProjectReference Include="../WindowsAirplay.Core/WindowsAirplay.Core.csproj" /></ItemGroup></Project>

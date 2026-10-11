@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><OutputType>Exe</OutputType><PlatformTarget>x64</PlatformTarget><ApplicationManifest>app.manifest</ApplicationManifest></PropertyGroup><ItemGroup><ProjectReference Include="../WindowsAirplay.Core/WindowsAirplay.Core.csproj" /><ProjectReference Include="../WindowsAirplay.Windows/WindowsAirplay.Windows.csproj" /></ItemGroup></Project>

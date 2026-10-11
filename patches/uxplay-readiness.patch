@@ -1,0 +1,11 @@
+--- a/uxplay.cpp
++++ b/uxplay.cpp
+@@ -3229,6 +3229,8 @@
+         stop_dnssd();
+         cleanup();
+     }
++    fprintf(stderr, "WINDOWSAIRPLAY_READY\n");
++    fflush(stderr);
+     reconnect:
+     compression_type = 0;
+     close_window = new_window_closing_behavior;

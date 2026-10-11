@@ -1,0 +1,8 @@
+.tools/
+.cache/
+artifacts/
+.superpowers/
+**/bin/
+**/obj/
+.vs/
+TestResults/
