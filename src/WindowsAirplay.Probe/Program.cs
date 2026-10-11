@@ -56,8 +56,11 @@ internal static class Program
             try
             {
                 await receiver.StartAsync(new("Windows AirPlay",runtime),cancellation.Token);
+                var shownDiagnostics=new HashSet<string>();
                 while(!cancellation.IsCancellationRequested)
                 {
+                    foreach(var message in receiver.Diagnostics)
+                        if(shownDiagnostics.Add(message)) Console.Error.WriteLine(message);
                     if(receiver.State==ReceiverState.Faulted) throw new InvalidOperationException("Receiver stopped unexpectedly.");
                     var id=receiver.ProcessId;
                     if(id is not null) presenter.TryPresent(id.Value,monitor.Id);
