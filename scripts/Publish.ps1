@@ -35,6 +35,8 @@ try {
     Copy-Item -LiteralPath (Join-Path $repo 'docs/local-preview.md') -Destination (Join-Path $output 'START-HERE.md')
     & rtk proxy $sdk (Join-Path $validator 'WindowsAirplay.Probe.dll') --validate-runtime (Join-Path $output 'receiver')
     if ($LASTEXITCODE -ne 0) { throw 'Copied runtime failed validation.' }
+    & rtk proxy powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Test-ReceiverRuntime.ps1 -RuntimePath (Join-Path $output 'receiver') -SkipServiceCheck
+    if ($LASTEXITCODE -ne 0) { throw 'Copied runtime failed its native loading test.' }
     $hashes = Get-ChildItem -LiteralPath $output -Recurse -File | ForEach-Object {
         [pscustomobject]@{ Path=$_.FullName.Substring($output.Length+1); SHA256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash }
     }
